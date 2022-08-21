@@ -1,7 +1,5 @@
 import { addDecorator } from "@storybook/react";
-import Center from "../src/components/Center/Center";
-
-addDecorator((story) => <Center>{story()}</Center>);
+import { Box, ChakraProvider } from "@chakra-ui/react";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -18,3 +16,11 @@ export const parameters = {
         : a[1].id.localeCompare(b[1].id, undefined, { numeric: true }),
   },
 };
+
+export const decorators = [
+  (Story) => (
+    <ChakraProvider>
+      <Box m={4}>{Story()}</Box>{" "}
+    </ChakraProvider>
+  ),
+];
